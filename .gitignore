@@ -1,0 +1,7 @@
+bin
+target
+WebContent
+.classpath
+.project
+.settings
+*.iml
