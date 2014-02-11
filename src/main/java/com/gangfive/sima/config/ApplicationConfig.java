@@ -72,7 +72,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     public ReloadableResourceBundleMessageSource messageSource()
     {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("classpath:lenguaje/lenguaje");
+        messageSource.setBasename("classpath:lang/lang");
         messageSource.setCacheSeconds( 0 );
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
