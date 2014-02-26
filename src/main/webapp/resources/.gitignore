@@ -2,5 +2,6 @@ bower_components
 node_modules
 js/dist/*.js
 js/dist/*.map
+js/tmp
 css/*.css
 .sass-cache

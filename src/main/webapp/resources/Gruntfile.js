@@ -1,61 +1,84 @@
 module.exports = function(grunt) {
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    ngmin: {
-     directives: {
-       expand: true,
-       src: ['js/**/directives/*.js'],
-       dest: 'js/dist'
-     },
-     controllers: {
-       expand: true,
-       src: ['js/**/controllers/*.js'],
-       dest: 'js/dist'
-     },
-     filters: {
-       expand: true,
-       src: ['js/**/filters/*.js'],
-       dest: 'js/dist'
-     },
-     services: {
-       expand: true,
-       src: ['js/**/services/*.js'],
-       dest: 'js/dist'
-     },
-    },
-    uglify: {
-      dist: {
-        src: 'js/dist/**/*.js',
-        dest: 'js/dist/app.js',
-        options: {
-          sourceMap: true
-        }
-      }
-    },
-    sass: {
-      dist: {
-        files: {
-          'css/app.css': 'sass/**/*.scss'
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        prop: {
+            tomcat_home: '/home/andres/Projects/PROY3/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps',
+            app_name: 'falafel'
         },
-        options: {
-          style: 'compact'
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                reporter: require('jshint-stylish')
+            },
+            all: [
+                'Gruntfile.js',
+                'js/**/*.js',
+                '!js/**/dist/**'
+            ]
+        },
+        ngmin: {
+            all: {
+                expand: true,
+                src: ['js/**/*.js', '!js/tmp/**', '!js/**/dist/**'],
+                dest: 'js/tmp'
+            }
+        },
+        uglify: {
+            dist: {
+                src: 'js/tmp/**/*.js',
+                dest: 'js/dist/app.js',
+                options: {
+                    sourceMap: true
+                }
+            }
+        },
+        sass: {
+            dist: {
+                files: {
+                    'css/app.css': 'sass/**/*.scss'
+                },
+                options: {
+                    style: 'compact'
+                }
+            }
+        },
+        clean: {
+            generated: {
+                src: ['css/*.css', 'js/tmp', 'js/dist/*.js', 'js/dist/*.map']
+            }
+        },
+        copy: {
+            main: {
+                src: ['css/*.css', 'js/**/*', 'images/**/*'],
+                dest: '<%=prop.tomcat_home%>/<%=prop.app_name%>/resources/',
+            }
+        },
+        watch: {
+            js: {
+                files: ['js/**/*.js', '!js/tmp/**', '!js/**/dist/**'],
+                tasks: [/*'jshint',*/ 'ngmin', 'uglify:dist', 'copy']
+            },
+            img: {
+                files: ['images/**'],
+                tasks: ['copy']
+            },
+            gruntfile: {
+                files: ['Gruntfile.js']
+            },
+            compass: {
+                files: ['sass/**/*.scss'],
+                tasks: ['sass:dist', 'copy']
+            }
         }
-      }
-    },
-    clean: {
-      ngmin: {
-        src: 'js/dist/*/',
-      },
-      generated: {
-        src: ['css/*.css', 'js/dist/*.js', 'js/dist/*.map']
-      }
-    }
-  });
+    });
 
-  grunt.loadNpmTasks('grunt-ngmin');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  
-  grunt.registerTask('default', ['ngmin', 'uglify:dist', 'sass:dist', 'clean:ngmin']);
+    grunt.loadNpmTasks('grunt-ngmin');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
+    grunt.registerTask('build', [/*'jshint',*/ 'ngmin', 'uglify:dist', 'sass:dist', 'clean:ngmin']);
 };

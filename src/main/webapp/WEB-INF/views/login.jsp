@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 
 <!doctype html>
-<html xmlns:ng="http://angularjs.org" class="ng-app:falafel" id="ng-app" ng-app="falafel">
+<html xmlns:ng="http://angularjs.org" class="ng-app:falafelLogin" id="ng-app" ng-app="falafelLogin">
   <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">

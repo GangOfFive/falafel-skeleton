@@ -1,29 +1,24 @@
-'use strict';
+angular.module('falafelLogin.controllers', [])
 
-/**
- * LoginController
- * @constructor
- */
+.controller('LoginCtrl', function($scope, $http, $location) {
 
-var LoginController = function($scope, $http,$location) {
-   
-	$scope.user = {email:"gerardo@parajeles.com",password:"maruja"};
-	
-    $scope.init = function() {
+    $scope.user = {
+        email : 'gerardo@parajeles.com',
+        password : 'maruja'
     };
-    
-    $scope.checkLogin = function(){
-    	$http.post('rest/login/checkuser',$scope.user).success(function (loginResponse) {
-    		if(loginResponse.code == 200){
-    			var usuario = {"idUser":loginResponse.idUsuario,"firstName":loginResponse.firstName,"lastName":loginResponse.lastName};
-    			$.jStorage.set("user",usuario);
-    		
-    			var path = "/sima/app#/users";
-    			window.location.href = path;
-    			
-    		}
-    	});
+
+    $scope.checkLogin = function() {
+        $http.post('rest/login/checkuser', $scope.user).success(function(loginResponse) {
+            if (loginResponse.code == 200) {
+                var usuario = {
+                    idUser: loginResponse.idUsuario,
+                    firstName: loginResponse.firstName,
+                    lastName: loginResponse.lastName
+                };
+                $.jStorage.set('user', usuario);
+
+                window.location.href = '/sima/app';
+            }
+        });
     };
-    
-    $scope.init();
-};
+});

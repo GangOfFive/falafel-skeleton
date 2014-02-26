@@ -1,46 +1,17 @@
 'use strict';
 
-var Cenfoteca = {};
+angular.module('falafelLogin', [
+    'falafelLogin.controllers'
+])
 
-var App = angular.module('Cenfoteca', ['Cenfoteca.filters', 'Cenfoteca.services','Cenfoteca.directives']);
+.config(function($routeProvider) {
 
-// Declare app level module which depends on filters, and services
-App.config(function ($routeProvider,$provide,$httpProvider) {
-	
-	$routeProvider.when('/login', {
-        templateUrl: 'layoutservice/loginlayout',
-        controller: LoginController
+    $routeProvider.when('/login', {
+        templateUrl : 'layoutservice/loginlayout',
+        controller : 'LoginCtrl'
     });
-	
-	$routeProvider.otherwise({redirectTo: '/login'});
-	
-	//RESPONSE INTERCEPTOR FOR ALL THE ANGULAR CALLS
-	$provide.factory('responseHttpInterceptor', function($q) {
-		return function(promise) {
-			return promise.then(function(response) {
-				// do something on success
-				return response;
-			}, function(response) {
-				// do something on error
-				if(response.status === 401){
-					window.location.href = "/sima/#/login";
-				}
-				return $q.reject(response);
-			});
-		};
-	});
 
-	$httpProvider.responseInterceptors.push('responseHttpInterceptor');
-	
-	//RESPONSE INTERCEPTOR FOR ALL THE JQUERY CALLS: EX:THE JQGRID
-	$.ajaxSetup({
-	    beforeSend: function() {
-	    },
-	    complete: function(response) {
-	    	if(response.status === 401){
-				window.location.href = "/sima/#/login";
-			}
-	    }
-	});
-	
+    $routeProvider.otherwise({
+        redirectTo : '/login'
+    });
 });
