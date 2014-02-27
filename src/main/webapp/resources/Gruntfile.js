@@ -1,10 +1,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        prop: {
-            tomcat_home: '/home/andres/Projects/PROY3/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps',
-            app_name: 'falafel'
-        },
+        prop: grunt.file.readJSON('local.json'),
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
@@ -80,5 +77,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('build', [/*'jshint',*/ 'ngmin', 'uglify:dist', 'sass:dist', 'clean:ngmin']);
+    grunt.registerTask('build', [/*'jshint',*/ 'ngmin', 'uglify:dist', 'sass:dist']);
 };

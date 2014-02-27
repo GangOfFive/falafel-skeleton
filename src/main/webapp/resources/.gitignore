@@ -5,3 +5,4 @@ js/dist/*.map
 js/tmp
 css/*.css
 .sass-cache
+local.json
