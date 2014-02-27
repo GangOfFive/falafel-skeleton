@@ -1,0 +1,4 @@
+{
+    "tomcat_home": "/path/to/deploy/dir",
+    "app_name": "sima"
+}
