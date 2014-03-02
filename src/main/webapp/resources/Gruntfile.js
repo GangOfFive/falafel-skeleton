@@ -53,7 +53,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js', '!js/tmp/**', '!js/**/dist/**'],
-                tasks: [/*'jshint',*/ 'ngmin', 'uglify:dist', 'copy']
+                tasks: [/*'jshint',*/ 'ngmin', 'uglify:dist' /*',copy'*/]
             },
             img: {
                 files: ['images/**'],
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
             },
             compass: {
                 files: ['sass/**/*.scss'],
-                tasks: ['sass:dist', 'copy']
+                tasks: ['sass:dist'/*, 'copy'*/]
             }
         }
     });
