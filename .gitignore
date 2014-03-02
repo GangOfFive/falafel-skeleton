@@ -6,3 +6,4 @@ WebContent
 .settings
 *.iml
 src/main/webapp/resources/.metadata/
+.idea/
