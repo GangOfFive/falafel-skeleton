@@ -46,7 +46,7 @@ module.exports = function(grunt) {
         },
         copy: {
             main: {
-                src: ['css/*.css', 'js/**/*', 'images/**/*'],
+                src: ['css/*.css', 'js/**/*', 'images/**/*', 'bower_components/**.*'],
                 dest: '<%=prop.tomcat_home%>/<%=prop.app_name%>/resources/',
             }
         },
