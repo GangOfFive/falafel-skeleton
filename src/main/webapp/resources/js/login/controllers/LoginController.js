@@ -15,7 +15,8 @@ angular.module('falafelLogin.controllers', [])
                     firstName: loginResponse.firstName,
                     lastName: loginResponse.lastName
                 };
-                $.jStorage.set('user', usuario);
+
+                localStorage.setItem('user', usuario);
 
                 window.location.href = '/sima/app';
             }

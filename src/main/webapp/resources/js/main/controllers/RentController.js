@@ -43,9 +43,9 @@ var RentController = function($scope, $http,$location,$upload) {
     				data : {
     					idTipoAlquiler:$scope.requestObject.idTipoAlquiler,
     					name:$scope.requestObject.name,
-    					description:$scope.requestObject.description,
+    					description:$scope.requestObject.description
     				},
-    				file : file,
+    				file : file
     			}).progress(
 					function(evt) {
 						console.log('percent: '

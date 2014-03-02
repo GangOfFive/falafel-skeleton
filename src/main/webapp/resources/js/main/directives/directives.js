@@ -2,7 +2,7 @@
 
 /* Directives */
 
-var AppDirectives = angular.module('Cenfoteca.directives', []);
+var AppDirectives = angular.module('falafel.directives', []);
 
 
 AppDirectives.directive('appVersion', [ 'version', function(version) {

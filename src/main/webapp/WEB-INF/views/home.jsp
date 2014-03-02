@@ -6,15 +6,16 @@
   <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon">
-    <c:import url="/WEB-INF/views/css.jsp"></c:import>           
-    <c:import url="/WEB-INF/views/javascript.jsp"></c:import>
+    <c:import url="/WEB-INF/views/css.jsp"/>
+    <c:import url="/WEB-INF/views/javascript.jsp"/>
   </head>
   
   <body>
-    <c:import url="/WEB-INF/views/header.jsp"></c:import>
+    <c:import url="/WEB-INF/views/header.jsp"/>
     <div id="wrapper">
       <div ng-view class="generalContainer container"></div>
+
     </div>
-    <c:import url="/WEB-INF/views/footer.jsp"></c:import>
+    <c:import url="/WEB-INF/views/footer.jsp"/>
   </body>
 </html>
