@@ -54,12 +54,11 @@ public class LoginController {
 			response.setCodeMessage("User authorized");
 			
 			//CREATE AND SET THE VALUES FOR THE CONTRACT OBJECT
-			response.setIdUsuario(loggedUser.getIdUsuario());
+			response.setIdUsuario(loggedUser.getId());
 			response.setFirstName(loggedUser.getFirstname());
 			response.setLastName(loggedUser.getLastname());
-			//
 			
-			currentSession.setAttribute("idUser", loggedUser.getIdUsuario());
+			currentSession.setAttribute("idUser", loggedUser.getId());
 		}
 		
 		return response;

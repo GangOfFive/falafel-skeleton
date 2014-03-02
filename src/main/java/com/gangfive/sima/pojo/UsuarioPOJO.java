@@ -2,7 +2,7 @@ package com.gangfive.sima.pojo;
 
 public class UsuarioPOJO{
 	
-	private int idUsuario;
+	private int id;
 	private String firstname;
 	private String lastname;
 	private String email;
@@ -14,12 +14,12 @@ public class UsuarioPOJO{
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getIdUsuario() {
-		return idUsuario;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {
@@ -52,13 +52,5 @@ public class UsuarioPOJO{
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Integer getIdTipoUsuario() {
-		return idTipoUsuario;
-	}
-
-	public void setIdTipoUsuario(Integer idTipoUsuario) {
-		this.idTipoUsuario = idTipoUsuario;
 	}
 }

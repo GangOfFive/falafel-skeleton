@@ -13,6 +13,7 @@
   <body>
     <c:import url="/WEB-INF/views/header.jsp"></c:import>
     <div id="wrapper">
+    <h1>Welcome</h1>
       <div ng-view class="generalContainer container"></div>
     </div>
     <c:import url="/WEB-INF/views/footer.jsp"></c:import>

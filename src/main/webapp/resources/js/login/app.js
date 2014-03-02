@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('falafelLogin', [
-    'falafelLogin.controllers'
+    'falafelLogin.controllers',
+    'falafel.services'
 ])
 
 .config(function($routeProvider) {

@@ -1,20 +1,10 @@
 package com.gangfive.sima.ejb;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-
 @Entity
 public class Usuario implements Serializable{
 	
@@ -22,7 +12,7 @@ public class Usuario implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idUsuario;
+	private int id;
 
 	private String firstname;
 	private String lastname;
@@ -35,12 +25,12 @@ public class Usuario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getIdUsuario() {
-		return idUsuario;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setIdUsuario(int id) {
+		this.id = id;
 	}
 
 	public String getFirstname() {
