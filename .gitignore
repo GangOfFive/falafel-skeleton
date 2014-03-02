@@ -5,3 +5,4 @@ WebContent
 .project
 .settings
 *.iml
+src/main/webapp/resources/.metadata/
