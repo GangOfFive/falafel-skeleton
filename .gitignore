@@ -7,3 +7,4 @@ WebContent
 *.iml
 src/main/webapp/resources/.metadata/
 .idea/
+.DS_Store
