@@ -1,4 +1,4 @@
-angular.module('falafelLogin.controllers', ['falafelCommon.services'])
+angular.module('falafelLogin.controllers', ['falafel.services'])
 
 .controller('LoginCtrl', function($scope, $http, $location, storage) {
 
