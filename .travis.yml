@@ -12,4 +12,4 @@ install:
 jdk:
   - oraclejdk7
 notifications:
-  email: gangfive@googlegroups.com
+  email: pfallasro@gmail.com
