@@ -9,6 +9,7 @@
         <img class="profile-img" src="resources/images/loginPhoto.jpg"
           alt="">
         <form class="form-signin">
+        <div id="invalid_message" class="alert alert-danger">Invalid Username or Password</div>
         <input type="text" class="form-control" placeholder="Email" autofocus ng-model="user.email">
         <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
         <button class="btn btn-lg btn-primary btn-block" ng-click="checkLogin()">

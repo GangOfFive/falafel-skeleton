@@ -37,19 +37,16 @@ public class LoginController {
 	@Path("/checkuser")
 	@POST
 	@Transactional
-	public BaseResponse checkuser(LoginRequest lr){	
+	public BaseResponse checkuser(LoginRequest lr) {
 		
 		Usuario loggedUser = loginService.checkUser(lr);
-		
 		LoginResponse response = new LoginResponse();
 		HttpSession currentSession = request.getSession();
 		
 		if(loggedUser == null){
 			response.setCode(401);
 			response.setErrorMessage("Unauthorized User");
-		}else{
-			
-			
+		} else {
 			response.setCode(200);
 			response.setCodeMessage("User authorized");
 			
