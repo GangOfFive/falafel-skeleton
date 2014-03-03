@@ -1,0 +1,6 @@
+language: java
+script: mvn clean package
+notifications:
+  email: gangfive@googlegroups.com
+jdk:
+  - oraclejdk7
