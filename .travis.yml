@@ -3,7 +3,7 @@ script: mvn clean package
 install:
   - sudo add-apt-repository -y ppa:chris-lea/node.js
   - sudo apt-get -y update
-  - sudo apt-get -y install nodejs 
+  - sudo apt-get -y install nodejs rubygems
   - sudo npm install -g grunt-cli
   - sudo npm install -g bower
   - sudo gem install compass
