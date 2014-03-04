@@ -26,71 +26,74 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories("com.gangfive.sima.repositories")
 public class HibernateConfig {
 
-    private String driverClassName = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost:3306/simadb";
-    private String username = "root"; 
-    private String password = "";
-    
-    @Bean()    
-    public DataSource getDataSource()
-    {
-        DriverManagerDataSource ds = new DriverManagerDataSource();        
-        ds.setDriverClassName(driverClassName);
-        ds.setUrl(url);
-        ds.setUsername(username);
-        ds.setPassword(password);        
-        return ds;
-    }
-    
-    @Bean
-    public HibernateExceptionTranslator hibernateExceptionTranslator() {
-        return new HibernateExceptionTranslator();
-    }
-    
-    @Bean
-    @Autowired
-    public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
-        
-    	HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
-        vendorAdapter.setShowSql(false);
-        vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
-        vendorAdapter.setDatabase(Database.MYSQL);
+	private String driverClassName = "com.mysql.jdbc.Driver";
+	private String url = "jdbc:mysql://localhost:3306/simadb";
+	private String username = "root";
+	private String password = "";
 
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.gangfive.sima.ejb");
-        factory.setDataSource(dataSource);
+	@Bean()
+	public DataSource getDataSource() {
+		DriverManagerDataSource ds = new DriverManagerDataSource();
+		ds.setDriverClassName(driverClassName);
+		ds.setUrl(url);
+		ds.setUsername(username);
+		ds.setPassword(password);
+		return ds;
+	}
 
-        Properties properties = new Properties();
-        properties.setProperty("hibernate.cache.use_second_level_cache", "true");
-        properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
-        properties.setProperty("hibernate.cache.use_query_cache", "true");
-        properties.setProperty("hibernate.generate_statistics", "true");
-        
-        factory.setJpaProperties(properties);
-        factory.afterPropertiesSet();
+	@Bean
+	public HibernateExceptionTranslator hibernateExceptionTranslator() {
+		return new HibernateExceptionTranslator();
+	}
 
-        return factory.getObject();
-    }
+	@Bean
+	@Autowired
+	public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
 
-    @Bean
-    @Autowired
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        
-    	JpaTransactionManager txManager = new JpaTransactionManager();
-        JpaDialect jpaDialect = new HibernateJpaDialect();
-        txManager.setEntityManagerFactory(entityManagerFactory);
-        txManager.setJpaDialect(jpaDialect);
-        return txManager;
-        
-    }
-    
-    @Bean
-    @Autowired
-    public SessionFactory getSessionFactory(EntityManagerFactory entityManagerFactory)
-    {
-        return ((HibernateEntityManagerFactory)entityManagerFactory).getSessionFactory();
-    }
-    
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setGenerateDdl(true);
+		vendorAdapter.setShowSql(false);
+		vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
+		vendorAdapter.setDatabase(Database.MYSQL);
+
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan("com.gangfive.sima.ejb");
+		factory.setDataSource(dataSource);
+
+		Properties properties = new Properties();
+		properties
+				.setProperty("hibernate.cache.use_second_level_cache", "true");
+		properties.setProperty("hibernate.cache.region.factory_class",
+				"org.hibernate.cache.ehcache.EhCacheRegionFactory");
+		properties.setProperty("hibernate.cache.use_query_cache", "true");
+		properties.setProperty("hibernate.generate_statistics", "true");
+
+		factory.setJpaProperties(properties);
+		factory.afterPropertiesSet();
+
+		return factory.getObject();
+	}
+
+	@Bean
+	@Autowired
+	public JpaTransactionManager transactionManager(
+			EntityManagerFactory entityManagerFactory) {
+
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		JpaDialect jpaDialect = new HibernateJpaDialect();
+		txManager.setEntityManagerFactory(entityManagerFactory);
+		txManager.setJpaDialect(jpaDialect);
+		return txManager;
+
+	}
+
+	@Bean
+	@Autowired
+	public SessionFactory getSessionFactory(
+			EntityManagerFactory entityManagerFactory) {
+		return ((HibernateEntityManagerFactory) entityManagerFactory)
+				.getSessionFactory();
+	}
+
 }

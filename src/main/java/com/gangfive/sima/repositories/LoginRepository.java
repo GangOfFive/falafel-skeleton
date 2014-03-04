@@ -4,9 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.gangfive.sima.ejb.Usuario;
 
-public interface LoginRepository extends CrudRepository<Usuario,Integer> {
-	
+public interface LoginRepository extends CrudRepository<Usuario, Integer> {
+
 	public static final int PAGE_SIZE = 5;
-	
-	Usuario findByEmailAndPassword(String email, String password);
+
+	Usuario findByEmailAndContrasena(String email, String contrasena);
 }

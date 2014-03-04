@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-@WebFilter(filterName="wsFilter",urlPatterns="/rest/protected/*")
+@WebFilter(filterName = "wsFilter", urlPatterns = "/rest/protected/*")
 public class WSFilter implements Filter {
 
 	final Logger logger = LoggerFactory.getLogger(WSFilter.class);
@@ -29,14 +29,13 @@ public class WSFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
-		HttpServletRequest servletRequest = (HttpServletRequest)request;
-	    HttpServletResponse servletResponse = (HttpServletResponse) response;
-		
-	    HttpSession currentSession = servletRequest.getSession();
-	    
-	    System.out.println("Session Object ------> " + currentSession.getAttribute("idUser"));
-		if (currentSession.getAttribute("idUser") != null) {
+
+		HttpServletRequest servletRequest = (HttpServletRequest) request;
+		HttpServletResponse servletResponse = (HttpServletResponse) response;
+
+		HttpSession currentSession = servletRequest.getSession();
+
+		if (currentSession.getAttribute("userId") != null) {
 			chain.doFilter(servletRequest, servletResponse);
 		} else {
 			logger.debug("Rejected: " + servletRequest.toString());
@@ -46,7 +45,7 @@ public class WSFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext (this);
+		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
 
 }

@@ -10,7 +10,7 @@
           alt="">
         <form class="form-signin">
         <input type="text" class="form-control" placeholder="Email" autofocus ng-model="user.email">
-        <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+        <input type="password" class="form-control" placeholder="Contraseña" ng-model="user.contrasena">
         <button class="btn btn-lg btn-primary btn-block" ng-click="checkLogin()">
           Sign in</button>
         <label class="checkbox pull-left">

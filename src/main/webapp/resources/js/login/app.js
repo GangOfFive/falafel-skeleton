@@ -8,7 +8,7 @@ angular.module('falafelLogin', [
 .config(function($routeProvider) {
 
     $routeProvider.when('/login', {
-        templateUrl : 'layoutservice/loginlayout',
+        templateUrl : 'layouts/login',
         controller : 'LoginCtrl'
     });
 

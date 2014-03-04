@@ -1,13 +1,12 @@
 package com.gangfive.sima.pojo;
 
-public class UsuarioPOJO{
+public class UsuarioPOJO {
 	
 	private int id;
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String password;
-	private Integer idTipoUsuario;
 	
 	public UsuarioPOJO() {
 		super();

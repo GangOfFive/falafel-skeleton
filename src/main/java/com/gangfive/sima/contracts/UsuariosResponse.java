@@ -4,13 +4,12 @@ import java.util.List;
 
 import com.gangfive.sima.pojo.UsuarioPOJO;
 
-public class UsersResponse extends BaseResponse{
+public class UsuariosResponse extends BaseResponse{
 	
 	private List<UsuarioPOJO> usuarios;
 
-	public UsersResponse() {
+	public UsuariosResponse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public List<UsuarioPOJO> getUsuarios() {

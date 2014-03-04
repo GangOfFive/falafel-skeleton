@@ -16,8 +16,7 @@ import com.gangfive.sima.contracts.BaseResponse;
 import com.gangfive.sima.contracts.LoginRequest;
 import com.gangfive.sima.contracts.LoginResponse;
 import com.gangfive.sima.ejb.Usuario;
-import com.gangfive.sima.services.LoginServiceInterface;
-
+import com.gangfive.sima.services.ILoginService;
 
 /**
  * Handles requests for the application home page.
@@ -27,41 +26,35 @@ import com.gangfive.sima.services.LoginServiceInterface;
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON })
 public class LoginController {
-	
+
 	@Autowired
-	LoginServiceInterface loginService;
-	
+	ILoginService loginService;
+
 	@Autowired
 	HttpServletRequest request;
-	
-	@Path("/checkuser")
+
+	@Path("/check-user")
 	@POST
 	@Transactional
-	public BaseResponse checkuser(LoginRequest lr){	
-		
-		Usuario loggedUser = loginService.checkUser(lr);
-		
+	public BaseResponse checkUser(LoginRequest lr) {
+
+		Usuario usuario = loginService.checkUsuario(lr);
+
 		LoginResponse response = new LoginResponse();
 		HttpSession currentSession = request.getSession();
-		
-		if(loggedUser == null){
+
+		if (usuario == null) {
 			response.setCode(401);
-			response.setErrorMessage("Unauthorized User");
-		}else{
-			
-			
+			response.setErrorMessage("Usuario no autorizado");
+		} else {
 			response.setCode(200);
-			response.setCodeMessage("User authorized");
-			
-			//CREATE AND SET THE VALUES FOR THE CONTRACT OBJECT
-			response.setIdUsuario(loggedUser.getId());
-			response.setFirstName(loggedUser.getFirstname());
-			response.setLastName(loggedUser.getLastname());
-			
-			currentSession.setAttribute("idUser", loggedUser.getId());
+			response.setCodeMessage("Usuario autorizado");
+			response.set(usuario);
+
+			currentSession.setAttribute("userId", usuario.getId());
 		}
-		
+
 		return response;
-		
+
 	}
 }

@@ -3,8 +3,8 @@ package com.gangfive.sima.services;
 import com.gangfive.sima.contracts.LoginRequest;
 import com.gangfive.sima.ejb.Usuario;
 
-public interface LoginServiceInterface {
+public interface ILoginService {
 
-	Usuario checkUser(LoginRequest lr);
+	Usuario checkUsuario(LoginRequest lr);
 
 }

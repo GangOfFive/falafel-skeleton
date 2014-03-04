@@ -1,4 +1,4 @@
- package com.gangfive.sima.config;
+package com.gangfive.sima.config;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,34 +12,37 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import com.sun.jersey.spi.spring.container.servlet.SpringServlet;
 
-
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-
 	@Override
-	public void onStartup(final ServletContext servletContext) throws ServletException {
+	public void onStartup(final ServletContext servletContext)
+			throws ServletException {
 		final AnnotationConfigWebApplicationContext root = new AnnotationConfigWebApplicationContext();
-		
+
 		root.setServletContext(servletContext);
 		root.scan("com.gangfive.sima.config");
 		root.refresh();
-		
+
 		servletContext.addListener(new ContextLoaderListener(root));
 		servletContext.addListener(new RequestContextListener());
-		
-		final Dynamic servlet = servletContext.addServlet("spring", new DispatcherServlet(root));
+
+		final Dynamic servlet = servletContext.addServlet("spring",
+				new DispatcherServlet(root));
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
-		
-		final Dynamic jerseyServlet = servletContext.addServlet("jerseyServlet", new SpringServlet());
+
+		final Dynamic jerseyServlet = servletContext.addServlet(
+				"jerseyServlet", new SpringServlet());
 		jerseyServlet.setLoadOnStartup(2);
-		jerseyServlet.setInitParameter("com.sun.jersey.config.property.packages", "com.gangfive.sima");
-		jerseyServlet.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true");
+		jerseyServlet.setInitParameter(
+				"com.sun.jersey.config.property.packages", "com.gangfive.sima");
+		jerseyServlet.setInitParameter(
+				"com.sun.jersey.api.json.POJOMappingFeature", "true");
 		jerseyServlet.addMapping("/rest/*");
-	
+
 		servletContext.addFilter("passthroughFilter", new PassthroughFilter());
 		servletContext.addFilter("wsFilter", new WSFilter());
-		
+
 	}
 
 }

@@ -9,14 +9,14 @@ import com.gangfive.sima.ejb.Usuario;
 import com.gangfive.sima.repositories.LoginRepository;
 
 @Service
-public class LoginService implements LoginServiceInterface{
+public class LoginService implements ILoginService{
 
 	@Autowired
 	LoginRepository loginRepository;
 	
 	@Override
 	@Transactional
-	public Usuario checkUser(LoginRequest lr) {
-		return loginRepository.findByEmailAndPassword(lr.getEmail(), lr.getPassword());
+	public Usuario checkUsuario(LoginRequest lr) {
+		return loginRepository.findByEmailAndContrasena(lr.getEmail(), lr.getContrasena());
 	}		
 }
