@@ -14,7 +14,7 @@ App.config(function ($routeProvider,$provide,$httpProvider) {
     });
 	$routeProvider.otherwise({redirectTo: '/users'});
 	//RESPONSE INTERCEPTOR FOR ALL THE ANGULAR CALLS
-	$provide.factory('responseHttpInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
+	$provide.factory('responseHttpInterceptor', ['$q', function($q) {
 		return function(promise) {
 			return promise.then(function(response) {
 				// do something on success
