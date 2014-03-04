@@ -2,7 +2,7 @@
 
 /* Filters */
 
-var AppFilters = angular.module('Cenfoteca.filters', []);
+var AppFilters = angular.module('falafel.filters', []);
 
 AppFilters.filter('interpolate', ['version', function (version) {
     return function (text) {

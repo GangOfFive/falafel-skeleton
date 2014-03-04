@@ -8,13 +8,15 @@ angular.module('falafelLogin.controllers', [])
         password : ''
     };
     
+    
     $scope.init = function() {
-    	
+    	$scope.user.email = 'haden9@gmail.com';
     };
+    
+    $scope.init();
 
     $scope.checkLogin = function() {
         $http.post('rest/login/checkuser', $scope.user).success(function(loginResponse) {
-            
         	switch(loginResponse.code) {
             case 200:
             	var usuario = {
@@ -37,6 +39,4 @@ angular.module('falafelLogin.controllers', [])
             }
         });
     };
-    
-    $scope.init();
 });

@@ -1,9 +1,9 @@
 'use strict';
 
-var Cenfoteca = {};
+var falafel = {};
 
-var App = angular.module('Cenfoteca', ['Cenfoteca.filters', 'Cenfoteca.services',
-      'Cenfoteca.directives','ngGrid','ngTable','ngDragDrop', 'ui.bootstrap','angularFileUpload']);
+var App = angular.module('falafel', ['falafel.filters', 'falafel.services',
+      'falafel.directives']);
 
 // Declare app level module which depends on filters, and services
 App.config(function ($routeProvider,$provide,$httpProvider) {
@@ -12,26 +12,9 @@ App.config(function ($routeProvider,$provide,$httpProvider) {
         templateUrl: 'layoutservice/userslayout',
         controller: UsersController
     });
-	
-	$routeProvider.when('/rent/available', {
-        templateUrl: 'layoutservice/rent/list',
-        controller: RentListController
-    });
-	
-	$routeProvider.when('/rent/my', {
-        templateUrl: 'layoutservice/rent/do',
-        controller: UserRentController
-    });
-	
-	$routeProvider.when('/rent/create', {
-        templateUrl: 'layoutservice/rent/create',
-        controller: RentController
-    });
-	
 	$routeProvider.otherwise({redirectTo: '/users'});
-	
 	//RESPONSE INTERCEPTOR FOR ALL THE ANGULAR CALLS
-	$provide.factory('responseHttpInterceptor', function($q) {
+	$provide.factory('responseHttpInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
 		return function(promise) {
 			return promise.then(function(response) {
 				// do something on success
@@ -44,10 +27,8 @@ App.config(function ($routeProvider,$provide,$httpProvider) {
 				return $q.reject(response);
 			});
 		};
-	});
-
+	}]);
 	$httpProvider.responseInterceptors.push('responseHttpInterceptor');
-	
 	//RESPONSE INTERCEPTOR FOR ALL THE JQUERY CALLS: EX:THE JQGRID
 	$.ajaxSetup({
 	    beforeSend: function() {
