@@ -1,7 +1,18 @@
 module.exports = function(grunt) {
+    var prop;
+    
+    try {
+        prop = grunt.file.readJSON('local.json');
+    } catch (err) {
+        prop = {
+            tomcat_home: "",
+            app_name: ""
+        };
+    }
+    
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        prop: grunt.file.readJSON('local.json'),
+        prop: prop,
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
@@ -77,5 +88,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('build', [/*'jshint',*/ 'ngmin', 'uglify:dist', 'sass:dist', 'copy']);
+    var build = [/*'jshint',*/ 'ngmin', 'uglify:dist', 'sass:dist'];
+    if (prop.tomcat_home && prop.app_name) {
+        build.push('copy');
+    }
+    grunt.registerTask('build', build);
 };
